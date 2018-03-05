@@ -78,9 +78,6 @@ def action(user_id, user_message):
     if action == "/delete":
         return delete_todo_item(user_id, content)
 
-    if action == "/rappel":
-        return get_list_by_user_id()
-
     # unknown action -> show usage
     return show_usage()
 
