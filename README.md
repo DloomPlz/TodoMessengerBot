@@ -1,4 +1,4 @@
-# Boilerplate for a flask based app with sqlalchemy and postgresql, deploy easily on heroku
+# Todolist Messenger Bot, written in Python
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
