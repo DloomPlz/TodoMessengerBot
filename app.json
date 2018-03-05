@@ -1,8 +1,8 @@
 {
-  "name": "Flask sqlalchemy heroku app",
-  "description": "A boilerplate for a Flask app with sqlalchemy with Postgresql, which can easily be deployed to Heroku.",
+  "name": "TodoList Messenger Bot",
+  "description": "A TodoList bot for Messenger, written in Python.",
   "image": "heroku/python",
-  "repository": "https://github.com/gmolveau/flask-sqlalchemy-heroku",
+  "repository": "https://github.com/smolveau/TodoMessengerBot",
   "keywords": [
     "python",
     "flask",

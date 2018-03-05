@@ -29,14 +29,6 @@ gunicorn wsgi:app
 python3 wsgi.py
 ```
 
-Test the stack (with docker) :
-```bash
-docker-compose up --build
-
-# or in the background with
-docker-compose up --build -d
-```
-
 Schedule a task for free every 10 minutes, every hour, or every day with heroku-scheduler :
 
 ![Scheduler](heroku_scheduler_example.png)
