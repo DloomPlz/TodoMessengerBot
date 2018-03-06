@@ -2,7 +2,7 @@ import time
 from flask_script import Manager
 from app import create_app, db
 from app.models.todo import Todo
-from app.api_v1.webhook import list_todo_items, handle_message
+from app.api_v1.webhook import list_todo_items, send_message
 
 app = create_app()
 manager = Manager(app)
