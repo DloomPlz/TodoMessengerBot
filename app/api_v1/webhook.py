@@ -7,9 +7,9 @@ import os
 
 # env_variables
 # token to verify that this bot is legit
-verify_token = os.getenv('VERIFY_TOKEN', None)
+verify_token = os.getenv('FB_VERIFY_TOKEN', None)
 # token to send messages through facebook messenger
-access_token = os.getenv('ACCESS_TOKEN', None)
+access_token = os.getenv('FB_ACCESS_TOKEN', None)
 
 
 @api.route('/webhook', methods=['GET'])

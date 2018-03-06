@@ -9,8 +9,8 @@ dependencies used in the virtual_env :
 Install the app and environment :
 
 ```bash
-git clone https://github.com/gmolveau/flask-sqlalchemy-heroku
-cd flask-sqlalchemy-heroku
+git clone https://github.com/smolveau/TodoMessengerBot
+cd TodoMessengerBot
 virtualenv venv -p python3
 source venv/bin/activate
 pip3 install -r requirements.txt
