@@ -44,7 +44,7 @@ def get_list_by_user_id():
     for userId in userIdList:
         resp = list_todo_items(userId)
         print(resp)
-        handle_message(userId,resp)
+        send_message(userId,resp)
         
 
 # manager's doc = https://flask-script.readthedocs.io/en/latest/

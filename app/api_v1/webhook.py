@@ -24,7 +24,8 @@ def webhook_action():
     for entry in data['entry']:
         user_message = entry['messaging'][0]['message']['text']
         user_id = entry['messaging'][0]['sender']['id']
-        handle_message(user_id, user_message)
+        text = action(user_id, user_message)
+        send_message(user_id, text)
     return Response(response="EVENT RECEIVED",status=200)
 
 @api.route('/webhook_dev', methods=['POST'])
@@ -40,16 +41,6 @@ def privacy():
     # needed route if you need to make your bot public
     return "This facebook messenger bot's only purpose is to [...]. That's all. We don't use it in any other way."
 
-
-def handle_message(user_id, user_message):
-    text = action(user_id, user_message)
-    response = {
-        'recipient': {'id': user_id},
-        'message': {'text': text}
-    }
-    r = requests.post(
-        'https://graph.facebook.com/v2.6/me/messages/?access_token=' + access_token, json=response)
-
 def handle_message_dev(user_id, user_message):
     text = action(user_id, user_message)
     response = {
@@ -61,6 +52,14 @@ def handle_message_dev(user_id, user_message):
         status=200,
         mimetype='application/json'
     )
+
+def send_message(user_id, user_message):
+	response = {
+        'recipient': {'id': user_id},
+        'message': {'text': user_message}
+    }
+    r = requests.post(
+        'https://graph.facebook.com/v2.6/me/messages/?access_token=' + access_token, json=response)
 
 
 
