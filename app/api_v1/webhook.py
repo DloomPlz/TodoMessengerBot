@@ -54,11 +54,12 @@ def handle_message_dev(user_id, user_message):
     )
 
 def send_message(user_id, user_message):
-	response = {
+    response = {
         'recipient': {'id': user_id},
         'message': {'text': user_message}
     }
-    r = requests.post('https://graph.facebook.com/v2.6/me/messages/?access_token=' + access_token, json=response)
+    r = requests.post(
+        'https://graph.facebook.com/v2.6/me/messages/?access_token=' + access_token, json=response)
 
 
 
