@@ -58,8 +58,7 @@ def send_message(user_id, user_message):
         'recipient': {'id': user_id},
         'message': {'text': user_message}
     }
-    r = requests.post(
-        'https://graph.facebook.com/v2.6/me/messages/?access_token=' + access_token, json=response)
+    r = requests.post('https://graph.facebook.com/v2.6/me/messages/?access_token=' + access_token, json=response)
 
 
 
