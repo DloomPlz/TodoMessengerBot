@@ -42,8 +42,8 @@ def scheduleTask():
 def get_list_by_user_id():
     userIdList = db.session.query(Todo.user_id).distinct()
     for userId in userIdList:
+        userId = userId[0]
         resp = list_todo_items(userId)
-        print(resp)
         send_message(userId,resp)
         
 
