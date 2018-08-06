@@ -15,7 +15,7 @@ def resetdb():
 # app.logger.debug(t)
 
 @manager.command
-def remind_list():
+def scheduled_reminder():
     # remind every 6 hours
     if datetime.datetime.now().hour % 6 is 0:
         users = db.session.query(Todo.user_id).distinct()
