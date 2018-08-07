@@ -3,7 +3,7 @@ from flask import Response, request, current_app
 from . import api
 from .. import db
 from ..controllers.todo import add_todo_item, list_todo_items, delete_todo_item
-from ..controllers.user import change_reminder
+from ..controllers.user import change_reminder, get_status
 import os
 
 verify_token = os.getenv('FB_VERIFY_TOKEN', None)
@@ -49,10 +49,13 @@ def action(user_id, user_message):
         remind_timer_hours = message_parsed[1]
         return change_reminder(user_id, remind_timer_hours)
 
+    if action == "/status":
+        return get_status(user_id)
+
     return show_usage()
 
 def show_usage():
-    return "Please choose between /add, /delete or /list, thx :)"
+    return "Please choose between /add, /delete, /list, /remind or /status thx :)"
 
 def send_message(user_id, user_message):
     response = {
