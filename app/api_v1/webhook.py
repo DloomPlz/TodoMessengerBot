@@ -39,7 +39,7 @@ def action(user_id, user_message):
     action = message_parsed[0]
 
     if action == "/add":
-        if len(message_parsed < 2):
+        if len(message_parsed) < 2:
             return "sorry your todo item is empty ¯\_(ツ)_/¯"
         todo_item_content = " ".join(message_parsed[1:])
         return add_todo_item(user_id, todo_item_content)
@@ -48,7 +48,7 @@ def action(user_id, user_message):
         return list_todo_items(user_id)
 
     if action == "/delete":
-        if len(message_parsed < 2):
+        if len(message_parsed) < 2:
             return "sorry your todo item ID is empty ¯\_(ツ)_/¯"
         try:
             todo_item_id = int(message_parsed[1])
@@ -57,7 +57,7 @@ def action(user_id, user_message):
         return delete_todo_item(user_id, todo_item_id)
 
     if action == "/remind":
-        if len(message_parsed < 2):
+        if len(message_parsed) < 2:
             return "sorry the reminder hours is empty ¯\_(ツ)_/¯"
         try:
             remind_timer_hours = int(message_parsed[1])
@@ -69,7 +69,7 @@ def action(user_id, user_message):
         return get_status(user_id)
 
     if action == "/search":
-        if len(message_parsed < 2):
+        if len(message_parsed) < 2:
             return "sorry your search is empty ¯\_(ツ)_/¯"
         search = message_parsed[1]
         return search_todo_items(user_id, search)
