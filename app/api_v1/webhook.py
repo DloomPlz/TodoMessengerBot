@@ -59,7 +59,7 @@ def action(user_id, user_message):
     return show_usage()
 
 def show_usage():
-    return "Please choose between /add, /delete, /list, /remind or /status thx :)"
+    return "Please choose between /add [...], /delete X, /list, /remind X, /status, /search [...] thx :)"
 
 def send_message(user_id, user_message):
     response = {
