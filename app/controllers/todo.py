@@ -17,7 +17,7 @@ def add_todo_item(user_id, todo_item):
 def list_todo_items(user_id):
     todos = Todo.query.filter(Todo.user_id==user_id).all()
     if todos is None :
-        return "The list for this user is empty. Good Job!"
+        return "You have no more todos ! Good job ¯\_(ツ)_/¯"
     resp = ""
     for i in range(0, len(todos)):
         resp += "#"+str(i+1)+": "+todos[i].content+"\n"
@@ -27,7 +27,7 @@ def list_todo_items(user_id):
 def search_todo_items(user_id, search):
     look_for = '%{0}%'.format(search)
     todos = Todo.query.filter(Todo.user_id==user_id).filter(Todo.content.ilike(look_for)).all()
-    if todos is None :
+    if len(todos) is 0 :
         return "0 todo matches your search ¯\_(ツ)_/¯"
     resp = "Found "+str(len(todos))+" todos :"
     for i in range(0, len(todos)):
