@@ -2,7 +2,7 @@ import requests, json
 from flask import Response, request, current_app
 from . import api
 from .. import db
-from ..controllers.todo import add_todo_item, list_todo_items, delete_todo_item
+from ..controllers.todo import add_todo_item, list_todo_items, delete_todo_item, search_todo_items
 from ..controllers.user import change_reminder, get_status
 import os
 
@@ -51,6 +51,10 @@ def action(user_id, user_message):
 
     if action == "/status":
         return get_status(user_id)
+
+    if action == "/search":
+        search = message_parsed[1]
+        return search_todo_items(user_id, search)
 
     return show_usage()
 

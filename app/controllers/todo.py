@@ -26,6 +26,17 @@ def list_todo_items(user_id):
     return resp
 
 
+def search_todo_items(user_id, search):
+    look_for = '%{0}%'.format(search)
+    todos = Todo.query.filter(Todo.user_id==user_id).filter(Todo.content.ilike(look_for)).all()
+    if todos is None :
+        return "0 todo matches your search ¯\_(ツ)_/¯"
+    resp = ""
+    for i in range(0, len(todos)):
+        resp += "- "+todos[i].content+ "\n"
+    return resp
+
+
 def delete_todo_item(user_id, str_item_id):
     if str_item_id is None:
         return "sorry your todo item ID is empty ¯\_(ツ)_/¯"
