@@ -9,16 +9,19 @@ import os
 verify_token = os.getenv('FB_VERIFY_TOKEN', None)
 access_token = os.getenv('FB_ACCESS_TOKEN', None)
 
+
 @api.route('/privacy', methods=['GET'])
 def privacy():
     # needed route if you need to make your bot public
     return "This facebook messenger bot's only purpose is to list your things and remind you of doing it. That's all. We don't use it in any other way."
+
 
 @api.route('/webhook', methods=['GET'])
 def webhook_verify():
     if request.args.get('hub.verify_token') == verify_token:
         return request.args.get('hub.challenge')
     return "Wrong verify token"
+
 
 @api.route('/webhook', methods=['POST'])
 def webhook_action():
@@ -29,6 +32,7 @@ def webhook_action():
         text = action(user_id, user_message)
         send_message(user_id, text)
     return Response(response="EVENT RECEIVED",status=200)
+
 
 def action(user_id, user_message):
     message_parsed = user_message.split()
@@ -68,14 +72,14 @@ def action(user_id, user_message):
         if len(message_parsed < 2):
             return "sorry your search is empty ¯\_(ツ)_/¯"
         search = message_parsed[1]
-        if search is None:
-            return "sorry your search is empty ¯\_(ツ)_/¯"
         return search_todo_items(user_id, search)
 
     return show_usage()
 
+
 def show_usage():
     return "Please choose between /add [...], /delete X, /list, /remind X, /status, /search [...] thx :)"
+
 
 def send_message(user_id, user_message):
     response = {

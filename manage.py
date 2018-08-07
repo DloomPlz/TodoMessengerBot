@@ -2,6 +2,7 @@ import datetime
 from flask_script import Manager
 from app import create_app, db
 from app.models.todo import Todo
+from app.models.user import User
 from app.api_v1.webhook import send_message
 from app.controllers.todo import list_todo_items
 
