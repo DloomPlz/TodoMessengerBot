@@ -27,6 +27,8 @@ def list_todo_items(user_id):
 
 
 def search_todo_items(user_id, search):
+    if not (search and search.strip()):
+        return "sorry your search is empty ¯\_(ツ)_/¯"
     look_for = '%{0}%'.format(search)
     todos = Todo.query.filter(Todo.user_id==user_id).filter(Todo.content.ilike(look_for)).all()
     if todos is None :
