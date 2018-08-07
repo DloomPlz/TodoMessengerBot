@@ -11,6 +11,11 @@ def change_reminder(facebook_id, str_remind_timer_hours):
     db.session.commit()
     return "all good :)"
 
+def get_status(facebook_id):
+    user = User.query.get(facebook_id)
+    nb_todos = len(user.todos)
+    return "you have "+str(nb_todos)+" todos. You will be reminded every "+str(user.reminder)+" hours."
+
 def get_or_create_user(facebook_id):
     user = User.query.get(facebook_id)
     if user is None:
