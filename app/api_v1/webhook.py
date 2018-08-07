@@ -82,7 +82,7 @@ def show_usage():
     usage += "/a /add, buy some milk -- add a new task \n"
     usage += "/d /delete 1 -- delete task by order \n"
     usage += "/l /list -- list all your tasks \n"
-    usage += "/r /remind 4 -- change the remind timer, every X hours"
+    usage += "/r /remind 4 -- change the remind timer, every X hours \n"
     usage += "/s /status -- get the number of tasks and remind-timer \n"
     usage += "/f /find buy -- find tasks that contains your search \n"
     usage += "thx ! :)"

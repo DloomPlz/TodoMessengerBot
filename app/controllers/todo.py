@@ -16,7 +16,7 @@ def add_todo_item(user_id, todo_item):
 
 def list_todo_items(user_id):
     todos = Todo.query.filter(Todo.user_id==user_id).all()
-    if todos is None :
+    if len(todos) is 0 :
         return "You have no more todos ! Good job ¯\_(ツ)_/¯"
     resp = ""
     for i in range(0, len(todos)):
