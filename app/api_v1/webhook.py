@@ -2,7 +2,7 @@ import requests, json
 from flask import Response, request, current_app
 from . import api
 from .. import db
-from ..controllers.todo import add_todo_item, list_todo_items, delete_todo_item, search_todo_items
+from ..controllers.todo import add_todo_item, list_todo_items, delete_todo_item, find_todo_items
 from ..controllers.user import change_reminder, get_status
 import os
 
@@ -38,16 +38,16 @@ def action(user_id, user_message):
     message_parsed = user_message.split()
     action = message_parsed[0]
 
-    if action == "/add":
+    if action in ["/add", "/a"]:
         if len(message_parsed) < 2:
             return "sorry your todo item is empty ¯\_(ツ)_/¯"
         todo_item_content = " ".join(message_parsed[1:])
         return add_todo_item(user_id, todo_item_content)
 
-    if action == "/list":
+    if action in ["/list", "/l"]:
         return list_todo_items(user_id)
 
-    if action == "/delete":
+    if action in ["/delete", "/d"]:
         if len(message_parsed) < 2:
             return "sorry your todo item ID is empty ¯\_(ツ)_/¯"
         try:
@@ -56,7 +56,7 @@ def action(user_id, user_message):
             return "sorry your todo item ID is not valid ¯\_(ツ)_/¯"
         return delete_todo_item(user_id, todo_item_id)
 
-    if action == "/remind":
+    if action in ["/remind", "/r"]:
         if len(message_parsed) < 2:
             return "sorry the reminder hours is empty ¯\_(ツ)_/¯"
         try:
@@ -65,21 +65,28 @@ def action(user_id, user_message):
             return "sorry the reminder is not valid, it should be a number of hours ¯\_(ツ)_/¯"
         return change_reminder(user_id, remind_timer_hours)
 
-    if action == "/status":
+    if action in ["/status", "s"]:
         return get_status(user_id)
 
-    if action == "/search":
+    if action in ["/find", "/f"]:
         if len(message_parsed) < 2:
             return "sorry your search is empty ¯\_(ツ)_/¯"
         search = message_parsed[1]
-        return search_todo_items(user_id, search)
+        return find_todo_items(user_id, search)
 
     return show_usage()
 
 
 def show_usage():
-    return "Please choose between /add [...], /delete X, /list, /remind X, /status, /search [...] thx :)"
-
+    usage = "Please choose between: \n"
+    usage += "/a /add, buy some milk -- add a new task \n"
+    usage += "/d /delete 1 -- delete task by order \n"
+    usage += "/l /list -- list all your tasks \n"
+    usage += "/r /remind 4 -- change the remind timer, every X hours"
+    usage += "/s /status -- get the number of tasks and remind-timer \n"
+    usage += "/f /find buy -- find tasks that contains your search \n"
+    usage += "thx ! :)"
+    return usage
 
 def send_message(user_id, user_message):
     response = {

@@ -24,7 +24,7 @@ def list_todo_items(user_id):
     return resp
 
 
-def search_todo_items(user_id, search):
+def find_todo_items(user_id, search):
     look_for = '%{0}%'.format(search)
     todos = Todo.query.filter(Todo.user_id==user_id).filter(Todo.content.ilike(look_for)).all()
     if len(todos) is 0 :
