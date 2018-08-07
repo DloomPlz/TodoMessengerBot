@@ -5,8 +5,6 @@ from .user import get_or_create_user
 
 
 def add_todo_item(user_id, todo_item):
-    if not (todo_item and todo_item.strip()):
-        return "sorry your todo item is empty ¯\_(ツ)_/¯"
     user = get_or_create_user(user_id)
     todo = Todo()
     todo.content = todo_item
@@ -27,8 +25,6 @@ def list_todo_items(user_id):
 
 
 def search_todo_items(user_id, search):
-    if not (search and search.strip()):
-        return "sorry your search is empty ¯\_(ツ)_/¯"
     look_for = '%{0}%'.format(search)
     todos = Todo.query.filter(Todo.user_id==user_id).filter(Todo.content.ilike(look_for)).all()
     if todos is None :
@@ -39,10 +35,7 @@ def search_todo_items(user_id, search):
     return resp
 
 
-def delete_todo_item(user_id, str_item_id):
-    if str_item_id is None:
-        return "sorry your todo item ID is empty ¯\_(ツ)_/¯"
-    item_id = int(str_item_id)
+def delete_todo_item(user_id, item_id):
     todos = Todo.query.filter(Todo.user_id==user_id).all()
     if todos is None:
         return "404 todo item not found"
