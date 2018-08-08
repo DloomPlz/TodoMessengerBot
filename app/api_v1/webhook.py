@@ -65,7 +65,7 @@ def action(user_id, user_message):
             return "sorry the reminder is not valid, it should be a number of hours ¯\_(ツ)_/¯"
         return change_reminder(user_id, remind_timer_hours)
 
-    if action in ["/status", "s"]:
+    if action in ["/status", "/s"]:
         return get_status(user_id)
 
     if action in ["/find", "/f"]:
