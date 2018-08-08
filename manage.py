@@ -22,8 +22,9 @@ def scheduled_reminder():
     users = User.query.all()
     for user in users:
         if current_hour % user.reminder is 0:
-            resp = list_todo_items(user.id)
-            send_message(user.id, resp)
+            if len(user.todos) > 0:
+                resp = list_todo_items(user.id)
+                send_message(user.id, resp)
 
 # manager's doc = https://flask-script.readthedocs.io/en/latest/
 
