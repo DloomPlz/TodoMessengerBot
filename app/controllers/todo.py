@@ -29,7 +29,7 @@ def find_todo_items(user_id, search):
     todos = Todo.query.filter(Todo.user_id==user_id).filter(Todo.content.ilike(look_for)).all()
     if len(todos) is 0 :
         return "0 todo matches your search ¯\_(ツ)_/¯"
-    resp = "Found "+str(len(todos))+" todos :"
+    resp = "Found "+str(len(todos))+" todos : \n"
     for i in range(0, len(todos)):
         resp += "- "+todos[i].content+ "\n"
     return resp
