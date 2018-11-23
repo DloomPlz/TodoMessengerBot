@@ -27,7 +27,10 @@ def webhook_verify():
 def webhook_action():
     data = json.loads(request.data.decode('utf-8'))
     for entry in data['entry']:
-        user_message = entry['messaging'][0]['message']['text']
+        try:
+            user_message = entry['messaging'][0]['message']['text']
+        except KeyError:
+            continue
         user_id = entry['messaging'][0]['sender']['id']
         text = action(user_id, user_message)
         send_message(user_id, text)
